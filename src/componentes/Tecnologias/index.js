@@ -13,7 +13,9 @@ const Tecnologias = (props) => {
             <div className="cards">
                 {props.tecnologias.map(tecnologia => <Card key={tecnologia.nome}
                                                            nome={tecnologia.nome}
-                                                           imagem={tecnologia.imagem}/>)}        
+                                                           imagem={tecnologia.imagem}
+                                                           corFundo={props.corPrimaria} 
+                                                      />)}        
             </div>                          
         </section>
         : ""
