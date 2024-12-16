@@ -39,11 +39,138 @@ function App() {
     }
   ];
 
-  const [tecnologias, setTecnologias] = useState([]);
+  const inicial = [
+    {
+      nome: 'HTML',
+      imagem: 'https://www.alura.com.br/assets/img/lideres/juliana-amoasei.1647533644.jpeg',
+      categoria: categorias[0].nome
+    },
+    {
+      nome: 'CSS',
+      imagem: 'https://www.alura.com.br/assets/img/lideres/daniel-artine.1647533644.jpeg',
+      categoria: categorias[0].nome
+    },
+    {
+      nome: 'JavaScript',
+      imagem: '	https://www.alura.com.br/assets/img/lideres/guilherme-lima.1647533644.jpeg',
+      categoria: categorias[0].nome
+    },
+    {
+      nome: 'React',
+      imagem: 'https://www.alura.com.br/assets/img/lideres/paulo-silveira.1647533644.jpeg',
+      categoria: categorias[0].nome
+    },
+    {
+      nome: 'JavaScript',
+      imagem: 'https://www.alura.com.br/assets/img/lideres/juliana-amoasei.1647533644.jpeg',
+      categoria: categorias[1].nome
+    },
+    {
+      nome: 'C#',
+      imagem: 'https://www.alura.com.br/assets/img/lideres/daniel-artine.1647533644.jpeg',
+      categoria: categorias[1].nome
+    },
+    {
+      nome: 'Java',
+      imagem: '	https://www.alura.com.br/assets/img/lideres/guilherme-lima.1647533644.jpeg',
+      categoria: categorias[1].nome
+    },
+    {
+      nome: 'Python',
+      imagem: 'https://www.alura.com.br/assets/img/lideres/paulo-silveira.1647533644.jpeg',
+      categoria: categorias[1].nome
+    },
+    {
+      nome: 'Kotlin',
+      imagem: 'https://www.alura.com.br/assets/img/lideres/juliana-amoasei.1647533644.jpeg',
+      categoria: categorias[2].nome
+    },
+    {
+      nome: 'Swift',
+      imagem: 'https://www.alura.com.br/assets/img/lideres/daniel-artine.1647533644.jpeg',
+      categoria: categorias[2].nome
+    },
+    {
+      nome: 'Flutter',
+      imagem: '	https://www.alura.com.br/assets/img/lideres/guilherme-lima.1647533644.jpeg',
+      categoria: categorias[2].nome
+    },
+    {
+      nome: 'React Native',
+      imagem: 'https://www.alura.com.br/assets/img/lideres/paulo-silveira.1647533644.jpeg',
+      categoria: categorias[2].nome
+    },
+    {
+      nome: 'React',
+      imagem: 'https://www.alura.com.br/assets/img/lideres/juliana-amoasei.1647533644.jpeg',
+      categoria: categorias[3].nome
+    },
+    {
+      nome: 'Node JS',
+      imagem: 'https://www.alura.com.br/assets/img/lideres/daniel-artine.1647533644.jpeg',
+      categoria: categorias[3].nome
+    },
+    {
+      nome: 'TypeScript',
+      imagem: '	https://www.alura.com.br/assets/img/lideres/guilherme-lima.1647533644.jpeg',
+      categoria: categorias[3].nome
+    },
+    {
+      nome: 'Tailwind',
+      imagem: 'https://www.alura.com.br/assets/img/lideres/paulo-silveira.1647533644.jpeg',
+      categoria: categorias[3].nome
+    },
+    {
+      nome: 'C#',
+      imagem: 'https://www.alura.com.br/assets/img/lideres/juliana-amoasei.1647533644.jpeg',
+      categoria: categorias[4].nome
+    },
+    {
+      nome: 'Java',
+      imagem: 'https://www.alura.com.br/assets/img/lideres/daniel-artine.1647533644.jpeg',
+      categoria: categorias[4].nome
+    },
+    {
+      nome: 'Delphi',
+      imagem: '	https://www.alura.com.br/assets/img/lideres/guilherme-lima.1647533644.jpeg',
+      categoria: categorias[4].nome
+    },
+    {
+      nome: 'Python',
+      imagem: 'https://www.alura.com.br/assets/img/lideres/paulo-silveira.1647533644.jpeg',
+      categoria: categorias[4].nome
+    },
+    {
+      nome: 'Julia',
+      imagem: 'https://www.alura.com.br/assets/img/lideres/juliana-amoasei.1647533644.jpeg',
+      categoria: categorias[5].nome
+    },
+    {
+      nome: 'Python',
+      imagem: 'https://www.alura.com.br/assets/img/lideres/daniel-artine.1647533644.jpeg',
+      categoria: categorias[5].nome
+    },
+    {
+      nome: 'R',
+      imagem: 'https://www.alura.com.br/assets/img/lideres/guilherme-lima.1647533644.jpeg',
+      categoria: categorias[5].nome
+    },
+    {
+      nome: 'Scala',
+      imagem: 'https://www.alura.com.br/assets/img/lideres/paulo-silveira.1647533644.jpeg',
+      categoria: categorias[5].nome
+    },
+  ]
+
+  const [tecnologias, setTecnologias] = useState(inicial);
 
   const aoAdicionarNovaTecnologia = (tecnologia) => {
     setTecnologias([...tecnologias, tecnologia]);
-  }
+  };
+
+  const aoDeletarTecnologia = () => {
+    console.log("Deletando Tecnologia :)");
+  };
 
   return (
     <div className="App">
@@ -55,16 +182,18 @@ function App() {
         categorias={categorias.map(categoria => categoria.nome)}
       />
 
-      {categorias.map(categoria => <Tecnologias 
-                                      key={categoria.nome}
-                                      nome={categoria.nome}
-                                      corPrimaria={categoria.corPrimaria}
-                                      corSecundaria={categoria.corSecundaria}
-                                      tecnologias={tecnologias.filter(tecnologia => tecnologia.categoria === categoria.nome )}
-                                    />)}
+      {categorias.map((categoria, indice) =>
+        <Tecnologias
+          key={indice}
+          nome={categoria.nome}
+          corPrimaria={categoria.corPrimaria}
+          corSecundaria={categoria.corSecundaria}
+          tecnologias={tecnologias.filter(tecnologia => tecnologia.categoria === categoria.nome)}
+          aoDeletar={aoDeletarTecnologia}
+        />
+      )}
 
-      <Rodape />                                   
-
+      <Rodape />
     </div>
   );
 }

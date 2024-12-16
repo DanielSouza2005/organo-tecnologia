@@ -6,7 +6,7 @@ import "./Rodape.css";
 
 const Rodape = () => {
     return (
-        <footer className="rodape">
+        <footer className="footer">
             <section>
                 <ul>
                     <li>

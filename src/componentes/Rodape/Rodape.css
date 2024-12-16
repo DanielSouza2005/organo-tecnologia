@@ -1,4 +1,4 @@
-.rodape {
+.footer {
     background: #6278F7;
     color: #FFF;
     padding: 80px;
@@ -7,11 +7,11 @@
     align-items: center;
 }
 
-.rodape ul li {
+.footer ul li {
     display: inline-block;
     margin-right: 32px;
 }
 
-.rodape ul li:last-child {
+.footer ul li:last-child {
     margin-right: 0;
 }
