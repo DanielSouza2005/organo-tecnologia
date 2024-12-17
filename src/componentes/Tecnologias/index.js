@@ -24,6 +24,8 @@ const Tecnologias = (props) => {
                                      imagem={tecnologia.imagem}
                                      corFundo={props.cor}
                                      aoDeletar={props.aoDeletar}
+                                     favorito={tecnologia.favorito}
+                                     aoFavoritar={props.aoFavoritar}
                                 />;
                     })}
                 </div>

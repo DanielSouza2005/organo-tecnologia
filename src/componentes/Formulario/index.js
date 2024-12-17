@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import CampoTexto from "../CampoTexto";
+import Campo from "../Campo";
 import ListaSuspensa from "../ListaSuspensa";
 import Botao from "../Botao";
 import "./Formulario.css";
@@ -44,15 +44,16 @@ const Formulario = (props) => {
             <form onSubmit={aoSalvarCategoria}>
                 <h2>{props.tituloCategoria}</h2>
 
-                <CampoTexto
+                <Campo
                     obrigatorio
                     label="Nome da Categoria"
                     placeholder="Digite a Categoria..."
                     valor={nomeCategoria}
                     aoAlterar={valor => { setNomeCategoria(valor) }}
                 />
-                <CampoTexto
+                <Campo
                     obrigatorio={false}
+                    type="color"
                     label="Cor"
                     placeholder="Informe a cor da Categoria..."
                     valor={corCategoria}
@@ -67,14 +68,14 @@ const Formulario = (props) => {
             <form onSubmit={aoSalvarTecnologia}>
                 <h2>{props.tituloTecnologia}</h2>
 
-                <CampoTexto
+                <Campo
                     obrigatorio
                     label="Nome da Tecnologia"
                     placeholder="Digite o Nome..."
                     valor={nomeTecnologia}
                     aoAlterar={valor => { setNomeTecnologia(valor) }}
                 />
-                <CampoTexto
+                <Campo
                     obrigatorio={false}
                     label="Imagem"
                     placeholder="Informe o Caminho da Imagem..."
