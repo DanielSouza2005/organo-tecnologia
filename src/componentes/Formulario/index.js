@@ -1,58 +1,98 @@
 import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import CampoTexto from "../CampoTexto";
 import ListaSuspensa from "../ListaSuspensa";
 import Botao from "../Botao";
 import "./Formulario.css";
 
 const Formulario = (props) => {
-    const [nome, setNome] = useState("");
-    const [imagem, setImagem] = useState("");
-    const [categoria, setCategoria] = useState("");
+    const [nomeTecnologia, setNomeTecnologia] = useState("");
+    const [imagemTecnologia, setImagemTecnologia] = useState("");
+    const [categoriaTecnologia, setCategoriaTecnologia] = useState("");
 
-    const aoSalvar = (evento) => {
+    const [nomeCategoria, setNomeCategoria] = useState("");
+    const [corCategoria, setCorCategoria] = useState("");
+
+    const aoSalvarTecnologia = (evento) => {
         evento.preventDefault();
         props.aoCadastrarTecnologia({
-            nome,
-            imagem,
-            categoria
+            id: uuidv4(),
+            nome: nomeTecnologia,
+            imagem: imagemTecnologia,
+            categoria: categoriaTecnologia
         });
 
-        setNome("");
-        setImagem("");
-        setCategoria("");
-    }
+        setNomeTecnologia("");
+        setImagemTecnologia("");
+        setCategoriaTecnologia("");
+    };
+
+    const aoSalvarCategoria = (evento) => {
+        evento.preventDefault();
+        props.aoCadastrarCategoria({
+            id: uuidv4(),
+            nome: nomeCategoria,
+            cor: corCategoria
+        });
+
+        setNomeCategoria("");
+        setCorCategoria("");
+    };
 
     return (
         <section className="formulario">
-            <form onSubmit={aoSalvar}>
-                <h2>{props.titulo}</h2>
+            <form onSubmit={aoSalvarCategoria}>
+                <h2>{props.tituloCategoria}</h2>
 
                 <CampoTexto
-                    obrigatorio={true}
-                    label="Nome da tecnologia"
+                    obrigatorio
+                    label="Nome da Categoria"
+                    placeholder="Digite a Categoria..."
+                    valor={nomeCategoria}
+                    aoAlterar={valor => { setNomeCategoria(valor) }}
+                />
+                <CampoTexto
+                    obrigatorio={false}
+                    label="Cor"
+                    placeholder="Informe a cor da Categoria..."
+                    valor={corCategoria}
+                    aoAlterar={valor => { setCorCategoria(valor) }}
+                />
+
+                <Botao>
+                    Criar Categoria
+                </Botao>
+            </form>
+
+            <form onSubmit={aoSalvarTecnologia}>
+                <h2>{props.tituloTecnologia}</h2>
+
+                <CampoTexto
+                    obrigatorio
+                    label="Nome da Tecnologia"
                     placeholder="Digite o Nome..."
-                    valor={nome}
-                    aoAlterar={valor => { setNome(valor) }}
+                    valor={nomeTecnologia}
+                    aoAlterar={valor => { setNomeTecnologia(valor) }}
                 />
                 <CampoTexto
                     obrigatorio={false}
                     label="Imagem"
                     placeholder="Informe o Caminho da Imagem..."
-                    valor={imagem}
-                    aoAlterar={valor => { setImagem(valor) }}
+                    valor={imagemTecnologia}
+                    aoAlterar={valor => { setImagemTecnologia(valor) }}
                 />
                 <ListaSuspensa
-                    obrigatorio={true}
+                    obrigatorio
                     label="Categoria"
                     itens={props.categorias}
-                    valor={categoria}
-                    aoAlterar={valor => { setCategoria(valor) }}
+                    valor={categoriaTecnologia}
+                    aoAlterar={valor => { setCategoriaTecnologia(valor) }}
                 />
 
                 <Botao>
                     Criar Card
                 </Botao>
-            </form>
+            </form>            
         </section>
     );
 }
