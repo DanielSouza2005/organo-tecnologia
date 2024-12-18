@@ -42,8 +42,13 @@
     position: absolute;
     right: 0;
     top: 0;
+    cursor: pointer;
 }
 
 .favoritar {
-    margin-top: 10px;
+    margin-top: 10px;    
+}
+
+.favoritar svg {
+    cursor: pointer;
 }

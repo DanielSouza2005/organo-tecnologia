@@ -4,6 +4,7 @@ import Banner from './componentes/Banner/';
 import Formulario from './componentes/Formulario';
 import Tecnologias from './componentes/Tecnologias';
 import Rodape from './componentes/Rodape';
+import Organizacao from './componentes/Organizacao';
 
 function App() {
 
@@ -213,13 +214,15 @@ function App() {
 
   const [tecnologias, setTecnologias] = useState(inicial);
 
+  const [organizacaoOculta, setOrganizacaoOculta] = useState(false);
+
   const aoAdicionarNovaTecnologia = (tecnologia) => {
     setTecnologias([...tecnologias, tecnologia]);
   };
 
   const aoAdicionarNovaCategoria = (categoria) => {    
     setCategorias([...categorias, categoria]);
-  }
+  };
 
   function aoDeletarTecnologia(id) {
     setTecnologias(tecnologias.filter(tecnologia => tecnologia.id !== id));
@@ -234,7 +237,7 @@ function App() {
 
       return categoria;
     }));
-  }
+  };
 
   function aoFavoritarTecnologia(id){
     setTecnologias(tecnologias.map(tecnologia => {
@@ -243,7 +246,11 @@ function App() {
       }
 
       return tecnologia;
-    }))
+    }));
+  };
+
+  function aoOcultarOrganizacao(){
+    setOrganizacaoOculta(!organizacaoOculta);
   }
 
   return (
@@ -258,18 +265,24 @@ function App() {
         categorias={categorias.map(categoria => categoria)}
       />
 
-      {categorias.map((categoria) =>
-        <Tecnologias
-          key={categoria.id}
-          id={categoria.id}
-          nome={categoria.nome}
-          cor={categoria.cor}
-          mudarCor={aoMudarCorDoTime}
-          tecnologias={tecnologias.filter(tecnologia => tecnologia.categoria === categoria.nome)}
-          aoDeletar={aoDeletarTecnologia}
-          aoFavoritar={aoFavoritarTecnologia}
-        />
-      )}
+      <Organizacao 
+        titulo="Minhas Tecnologias" 
+        oculto={organizacaoOculta}
+        aoOcultar={aoOcultarOrganizacao}
+        >        
+        {categorias.map((categoria) =>
+          <Tecnologias
+            key={categoria.id}
+            id={categoria.id}
+            nome={categoria.nome}
+            cor={categoria.cor}
+            mudarCor={aoMudarCorDoTime}
+            tecnologias={tecnologias.filter(tecnologia => tecnologia.categoria === categoria.nome)}
+            aoDeletar={aoDeletarTecnologia}
+            aoFavoritar={aoFavoritarTecnologia}
+          />
+        )}
+      </Organizacao>      
 
       <Rodape />
     </div>

@@ -1,0 +1,20 @@
+.organizacao-cabecalho {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+
+.organizacao-cabecalho h2 {
+    font-size: 32px;
+    border-bottom: 3px solid;
+    display: inline-block;
+    padding-bottom: 8px;    
+    color: #6278f7;
+    margin-bottom: 40px;
+}
+
+.btn-ocultar {
+    color: #6278f7; 
+    cursor: pointer;
+    padding-left: 32px;
+}
