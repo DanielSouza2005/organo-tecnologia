@@ -1,14 +1,17 @@
-import { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import Banner from './componentes/Banner/';
 import Formulario from './componentes/Formulario';
 import Tecnologias from './componentes/Tecnologias';
 import Rodape from './componentes/Rodape';
 import Organizacao from './componentes/Organizacao';
 
+import reducerTecnologia, { CADASTRAR_TECNOLOGIA, DELETAR_TECNOLOGIA, FAVORITAR_TECNOLOGIA } from "./reducer/reducerTecnologias.js";
+import reducerCategoria, { CADASTRAR_CATEGORIA, TROCAR_COR_CATEGORIA } from "./reducer/reducerCategorias.js";
+import { useState, useReducer } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+
 function App() {
 
-  const [categorias, setCategorias] = useState([
+  const [categorias, dispatchCategorias] = useReducer(reducerCategoria, [
     {
       id: uuidv4(),
       nome: "Front-End",
@@ -41,7 +44,7 @@ function App() {
     }
   ]);
 
-  const inicial = [
+  const [tecnologias, dispatchTecnologias] = useReducer(reducerTecnologia, [
     {
       id: uuidv4(),
       favorito: false,
@@ -210,46 +213,47 @@ function App() {
       imagem: 'https://raw.githubusercontent.com/OlegIlyenko/scala-icon/master/scala-icon.png',
       categoria: categorias[5].nome
     },
-  ];
-
-  const [tecnologias, setTecnologias] = useState(inicial);
+  ]);
 
   const [organizacaoOculta, setOrganizacaoOculta] = useState(false);
 
   const aoAdicionarNovaTecnologia = (tecnologia) => {
-    setTecnologias([...tecnologias, tecnologia]);
+    dispatchTecnologias({
+      tipo: CADASTRAR_TECNOLOGIA,
+      tecnologia: tecnologia
+    });
   };
 
-  const aoAdicionarNovaCategoria = (categoria) => {    
-    setCategorias([...categorias, categoria]);
+  const aoAdicionarNovaCategoria = (categoria) => {
+    dispatchCategorias({
+      tipo: CADASTRAR_CATEGORIA,
+      categoria: categoria
+    });
   };
 
   function aoDeletarTecnologia(id) {
-    setTecnologias(tecnologias.filter(tecnologia => tecnologia.id !== id));
+    dispatchTecnologias({
+      tipo: DELETAR_TECNOLOGIA,
+      id: id
+    });
   };
 
-  function aoMudarCorDoTime(cor, id) {
-    setCategorias(categorias.map(categoria => {
-
-      if (categoria.id === id) {
-        categoria.cor = cor;
-      }
-
-      return categoria;
-    }));
+  function aoMudarCorCategoria(cor, id) {
+    dispatchCategorias({
+      tipo: TROCAR_COR_CATEGORIA,
+      id: id,
+      cor: cor
+    });
   };
 
-  function aoFavoritarTecnologia(id){
-    setTecnologias(tecnologias.map(tecnologia => {
-      if (tecnologia.id === id) {
-        tecnologia.favorito = !tecnologia.favorito;        
-      }
-
-      return tecnologia;
-    }));
+  function aoFavoritarTecnologia(id) {
+    dispatchTecnologias({
+      tipo: FAVORITAR_TECNOLOGIA,
+      id: id
+    });
   };
 
-  function aoOcultarOrganizacao(){
+  function aoOcultarOrganizacao() {
     setOrganizacaoOculta(!organizacaoOculta);
   }
 
@@ -262,27 +266,27 @@ function App() {
         tituloCategoria="Preencha os dados para criar uma Categoria"
         aoCadastrarTecnologia={tecnologia => aoAdicionarNovaTecnologia(tecnologia)}
         aoCadastrarCategoria={categoria => aoAdicionarNovaCategoria(categoria)}
-        categorias={categorias.map(categoria => categoria)}
+        categorias={categorias}
       />
 
-      <Organizacao 
-        titulo="Minhas Tecnologias" 
+      <Organizacao
+        titulo="Minhas Tecnologias"
         oculto={organizacaoOculta}
         aoOcultar={aoOcultarOrganizacao}
-        >        
+      >
         {categorias.map((categoria) =>
           <Tecnologias
             key={categoria.id}
             id={categoria.id}
             nome={categoria.nome}
             cor={categoria.cor}
-            mudarCor={aoMudarCorDoTime}
+            mudarCor={aoMudarCorCategoria}
             tecnologias={tecnologias.filter(tecnologia => tecnologia.categoria === categoria.nome)}
             aoDeletar={aoDeletarTecnologia}
             aoFavoritar={aoFavoritarTecnologia}
           />
         )}
-      </Organizacao>      
+      </Organizacao>
 
       <Rodape />
     </div>

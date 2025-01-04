@@ -11,7 +11,7 @@ const Formulario = (props) => {
     const [categoriaTecnologia, setCategoriaTecnologia] = useState("");
 
     const [nomeCategoria, setNomeCategoria] = useState("");
-    const [corCategoria, setCorCategoria] = useState("");
+    const [corCategoria, setCorCategoria] = useState("#000000");
 
     const aoSalvarTecnologia = (evento) => {
         evento.preventDefault();
