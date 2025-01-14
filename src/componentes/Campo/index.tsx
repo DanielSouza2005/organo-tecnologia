@@ -1,7 +1,5 @@
 import "./Campo.css";
 
-import React from "react";
-
 interface CampoProps {
     inputType?: string;
     inputLabel: string;
@@ -19,7 +17,7 @@ const Campo = ({ inputType = "text",
                  inputObrigatorio = false }: CampoProps) => {
 
     const aoDigitarInput = (evento: React.ChangeEvent<HTMLInputElement>) => {
-        aoAlterarInput(evento.target.value);
+        aoAlterarInput(evento.target.value);        
     }
 
     return (
