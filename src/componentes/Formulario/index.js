@@ -45,19 +45,19 @@ const Formulario = (props) => {
                 <h2>{props.tituloCategoria}</h2>
 
                 <Campo
-                    obrigatorio
-                    label="Nome da Categoria"
-                    placeholder="Digite a Categoria..."
-                    valor={nomeCategoria}
-                    aoAlterar={valor => { setNomeCategoria(valor) }}
+                    inputObrigatorio
+                    inputLabel="Nome da Categoria"
+                    inputPlaceHolder="Digite a Categoria..."
+                    inputValor={nomeCategoria}
+                    aoAlterarInput={valor => { setNomeCategoria(valor) }}
                 />
                 <Campo
-                    obrigatorio={false}
-                    type="color"
-                    label="Cor"
-                    placeholder="Informe a cor da Categoria..."
-                    valor={corCategoria}
-                    aoAlterar={valor => { setCorCategoria(valor) }}
+                    inputObrigatorio={false}
+                    inputType="color"
+                    inputLabel="Cor"
+                    inputPlaceHolder="Informe a cor da Categoria..."
+                    inputValor={corCategoria}
+                    aoAlterarInput={valor => { setCorCategoria(valor) }}
                 />
 
                 <Botao>
@@ -69,24 +69,24 @@ const Formulario = (props) => {
                 <h2>{props.tituloTecnologia}</h2>
 
                 <Campo
-                    obrigatorio
-                    label="Nome da Tecnologia"
-                    placeholder="Digite o Nome..."
-                    valor={nomeTecnologia}
-                    aoAlterar={valor => { setNomeTecnologia(valor) }}
+                    inputObrigatorio
+                    inputLabel="Nome da Tecnologia"
+                    inputPlaceHolder="Digite o Nome..."
+                    inputValor={nomeTecnologia}
+                    aoAlterarInput={valor => { setNomeTecnologia(valor) }}
                 />
                 <Campo
-                    obrigatorio={false}
-                    label="Imagem"
-                    placeholder="Informe o Caminho da Imagem..."
-                    valor={imagemTecnologia}
-                    aoAlterar={valor => { setImagemTecnologia(valor) }}
+                    inputObrigatorio={false}
+                    inputLabel="Imagem"
+                    inputPlaceHolder="Informe o Caminho da Imagem..."
+                    inputValor={imagemTecnologia}
+                    aoAlterarInput={valor => { setImagemTecnologia(valor) }}
                 />
                 <ListaSuspensa
                     obrigatorio
                     label="Categoria"
                     itens={props.categorias}
-                    valor={categoriaTecnologia}
+                    value={categoriaTecnologia}
                     aoAlterar={valor => { setCategoriaTecnologia(valor) }}
                 />
 

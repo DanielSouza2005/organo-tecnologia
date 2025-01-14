@@ -1,4 +1,5 @@
 import Banner from './componentes/Banner/';
+import bannerImg from './imagens/banner.png';
 import Formulario from './componentes/Formulario';
 import Tecnologias from './componentes/Tecnologias';
 import Rodape from './componentes/Rodape';
@@ -259,7 +260,10 @@ function App() {
 
   return (
     <div className="App">
-      <Banner />
+      <Banner 
+        caminhoImagem={bannerImg}
+        textoAlternativo="Banner principal da Página das Tecnologias usadas no Desenvolvimento"
+      />
 
       <Formulario
         tituloTecnologia="Preencha os dados para criar o card da Tecnologia"
