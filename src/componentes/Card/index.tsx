@@ -2,7 +2,17 @@ import "./card.css";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 
-const Card = ({id, nome, imagem, corFundo, favorito, aoDeletar, aoFavoritar}) => {
+interface CardProps {
+    id: string;
+    nome: string;
+    imagem: string;
+    corFundo: string;
+    favorito: boolean;
+    aoDeletar: (id: string) => void;
+    aoFavoritar: (id: string) => void;
+}
+
+const Card = ({id, nome, imagem, corFundo, favorito, aoDeletar, aoFavoritar} : CardProps) => {
 
     function favoritar(){
         aoFavoritar(id);
