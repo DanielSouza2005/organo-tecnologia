@@ -3,13 +3,13 @@ import "./ListaSuspensa.css";
 
 interface ListaSuspensaProps {
     label: string;
-    obrigatorio: boolean;
+    obrigatorio?: boolean;
     valor: string;
     aoAlterar: (value: string) => void;
     itens: ICategoria[];
 }
 
-const ListaSuspensa = ({ label, obrigatorio, valor, itens, aoAlterar }: ListaSuspensaProps) => {
+const ListaSuspensa = ({ label, valor, itens, aoAlterar, obrigatorio = false }: ListaSuspensaProps) => {
 
     return (
         <div className="lista-suspensa">

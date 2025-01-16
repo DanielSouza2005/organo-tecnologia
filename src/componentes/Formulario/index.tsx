@@ -4,8 +4,18 @@ import Campo from "../Campo";
 import ListaSuspensa from "../ListaSuspensa";
 import Botao from "../Botao";
 import "./Formulario.css";
+import { ICategoria } from '../../shared/interfaces/iCategoria';
+import { ITecnologia } from '../../shared/interfaces/iTecnologia';
 
-const Formulario = (props) => {
+interface FormularioProps {
+    tituloCategoria: string;
+    tituloTecnologia: string;
+    categorias: ICategoria[];
+    aoCadastrarTecnologia: (tecnologia : ITecnologia) => void;
+    aoCadastrarCategoria: (categoria : ICategoria) => void;
+}
+
+const Formulario = ({ tituloCategoria, tituloTecnologia, categorias, aoCadastrarTecnologia, aoCadastrarCategoria }: FormularioProps) => {
     const [nomeTecnologia, setNomeTecnologia] = useState("");
     const [imagemTecnologia, setImagemTecnologia] = useState("");
     const [categoriaTecnologia, setCategoriaTecnologia] = useState("");
@@ -13,9 +23,9 @@ const Formulario = (props) => {
     const [nomeCategoria, setNomeCategoria] = useState("");
     const [corCategoria, setCorCategoria] = useState("#000000");
 
-    const aoSalvarTecnologia = (evento) => {
+    const aoSalvarTecnologia = (evento : React.FormEvent<HTMLFormElement>) => {
         evento.preventDefault();
-        props.aoCadastrarTecnologia({
+        aoCadastrarTecnologia({
             id: uuidv4(),
             nome: nomeTecnologia,
             imagem: imagemTecnologia,
@@ -27,9 +37,9 @@ const Formulario = (props) => {
         setCategoriaTecnologia("");
     };
 
-    const aoSalvarCategoria = (evento) => {
+    const aoSalvarCategoria = (evento : React.FormEvent<HTMLFormElement>) => {
         evento.preventDefault();
-        props.aoCadastrarCategoria({
+        aoCadastrarCategoria({
             id: uuidv4(),
             nome: nomeCategoria,
             cor: corCategoria
@@ -42,7 +52,7 @@ const Formulario = (props) => {
     return (
         <section className="formulario">
             <form onSubmit={aoSalvarCategoria}>
-                <h2>{props.tituloCategoria}</h2>
+                <h2>{tituloCategoria}</h2>
 
                 <Campo
                     inputObrigatorio
@@ -52,7 +62,6 @@ const Formulario = (props) => {
                     aoAlterarInput={valor => { setNomeCategoria(valor) }}
                 />
                 <Campo
-                    inputObrigatorio={false}
                     inputType="color"
                     inputLabel="Cor"
                     inputPlaceHolder="Informe a cor da Categoria..."
@@ -66,7 +75,7 @@ const Formulario = (props) => {
             </form>
 
             <form onSubmit={aoSalvarTecnologia}>
-                <h2>{props.tituloTecnologia}</h2>
+                <h2>{tituloTecnologia}</h2>
 
                 <Campo
                     inputObrigatorio
@@ -76,7 +85,6 @@ const Formulario = (props) => {
                     aoAlterarInput={valor => { setNomeTecnologia(valor) }}
                 />
                 <Campo
-                    inputObrigatorio={false}
                     inputLabel="Imagem"
                     inputPlaceHolder="Informe o Caminho da Imagem..."
                     inputValor={imagemTecnologia}
@@ -85,15 +93,15 @@ const Formulario = (props) => {
                 <ListaSuspensa
                     obrigatorio
                     label="Categoria"
-                    itens={props.categorias}
-                    value={categoriaTecnologia}
+                    itens={categorias}
+                    valor={categoriaTecnologia}
                     aoAlterar={valor => { setCategoriaTecnologia(valor) }}
                 />
 
                 <Botao>
                     Criar Card
                 </Botao>
-            </form>            
+            </form>
         </section>
     );
 }

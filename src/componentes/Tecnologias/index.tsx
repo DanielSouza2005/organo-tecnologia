@@ -37,7 +37,7 @@ const Tecnologias = ({ id, nome, cor, tecnologias, mudarCor, aoDeletar, aoFavori
                                     imagem={tecnologia.imagem}
                                     corFundo={cor}
                                     aoDeletar={aoDeletar}
-                                    favorito={tecnologia.favorito}
+                                    favorito={tecnologia.favorito ?? false}
                                     aoFavoritar={aoFavoritar}
                                 />;
                     })}
