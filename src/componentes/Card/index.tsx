@@ -7,12 +7,13 @@ interface CardProps {
     nome: string;
     imagem: string;
     corFundo: string;
+    dataInclusao: string;
     favorito: boolean;
     aoDeletar: (id: string) => void;
     aoFavoritar: (id: string) => void;
 }
 
-const Card = ({id, nome, imagem, corFundo, favorito, aoDeletar, aoFavoritar} : CardProps) => {
+const Card = ({id, nome, imagem, corFundo, favorito, dataInclusao, aoDeletar, aoFavoritar} : CardProps) => {
 
     function favoritar(){
         aoFavoritar(id);
@@ -40,7 +41,8 @@ const Card = ({id, nome, imagem, corFundo, favorito, aoDeletar, aoFavoritar} : C
                         <MdFavorite {...propsFavorito} color="ff0000" /> : 
                         <MdFavoriteBorder {...propsFavorito} />
                     }
-                </div>
+                    <h5>{ new Date(dataInclusao).toLocaleDateString() }</h5>
+                </div>                
             </div>
         </div>
     );

@@ -1,7 +1,8 @@
+import { HTMLInputTypeAttribute } from "react";
 import "./Campo.css";
 
 interface CampoProps {
-    inputType?: string;
+    inputType?: HTMLInputTypeAttribute;
     inputLabel: string;
     inputValor: string;
     inputPlaceHolder: string;

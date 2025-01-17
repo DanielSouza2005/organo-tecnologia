@@ -6,6 +6,7 @@ export interface ITecnologia {
     imagem: string;
     favorito?: boolean;
     categoria?: string;
+    dataInclusao: string;
 }
 
 interface CadastrarTecnologiaAcao {

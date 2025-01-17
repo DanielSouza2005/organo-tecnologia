@@ -19,6 +19,7 @@ const Formulario = ({ tituloCategoria, tituloTecnologia, categorias, aoCadastrar
     const [nomeTecnologia, setNomeTecnologia] = useState("");
     const [imagemTecnologia, setImagemTecnologia] = useState("");
     const [categoriaTecnologia, setCategoriaTecnologia] = useState("");
+    const [dataInclusaoTecnologia, setDataInclusaoTecnologia] = useState("");
 
     const [nomeCategoria, setNomeCategoria] = useState("");
     const [corCategoria, setCorCategoria] = useState("#000000");
@@ -29,12 +30,14 @@ const Formulario = ({ tituloCategoria, tituloTecnologia, categorias, aoCadastrar
             id: uuidv4(),
             nome: nomeTecnologia,
             imagem: imagemTecnologia,
-            categoria: categoriaTecnologia
+            categoria: categoriaTecnologia,
+            dataInclusao: dataInclusaoTecnologia
         });
 
         setNomeTecnologia("");
         setImagemTecnologia("");
         setCategoriaTecnologia("");
+        setDataInclusaoTecnologia("");
     };
 
     const aoSalvarCategoria = (evento : React.FormEvent<HTMLFormElement>) => {
@@ -89,6 +92,14 @@ const Formulario = ({ tituloCategoria, tituloTecnologia, categorias, aoCadastrar
                     inputPlaceHolder="Informe o Caminho da Imagem..."
                     inputValor={imagemTecnologia}
                     aoAlterarInput={valor => { setImagemTecnologia(valor) }}
+                />
+                <Campo 
+                   inputObrigatorio
+                   inputLabel="Data de Inclusão" 
+                   inputType="date"
+                   inputPlaceHolder=""
+                   inputValor={dataInclusaoTecnologia}
+                   aoAlterarInput={valor => { setDataInclusaoTecnologia(valor) }}
                 />
                 <ListaSuspensa
                     obrigatorio
