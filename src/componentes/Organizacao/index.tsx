@@ -1,29 +1,37 @@
 import { BiHide, BiSolidHide } from "react-icons/bi";
 import './organizacao.css';
+import { ReactNode } from "react";
 
-const Organizacao = (props) => {
+interface OrganizacaoProps {
+    titulo : string;
+    oculto: boolean;
+    aoOcultar: () => void;
+    children: ReactNode;    
+}
+
+const Organizacao = ({ titulo, oculto, aoOcultar, children } : OrganizacaoProps) => {
 
     const propsOcultar = {
         className: "btn-ocultar",
         size: 32,
-        onClick: props.aoOcultar
+        onClick: aoOcultar
     }
 
     return(
         <section className="organizacao"> 
             <div className="organizacao-cabecalho">
-                <h2>{props.titulo}</h2>
+                <h2>{titulo}</h2>
                 {
-                    props.oculto ?
+                    oculto ?
                     <BiSolidHide {...propsOcultar} />:
                     <BiHide {...propsOcultar} />                                       
                 }                
             </div>           
             
             {
-                props.oculto ?
-                "" :
-                props.children
+                oculto ?
+                <></> :
+                children
             }
         </section>
     );

@@ -1,14 +1,16 @@
-import Banner from './componentes/Banner/';
+import Banner from './componentes/Banner';
 import bannerImg from './imagens/banner.png';
 import Formulario from './componentes/Formulario';
 import Tecnologias from './componentes/Tecnologias';
 import Rodape from './componentes/Rodape';
 import Organizacao from './componentes/Organizacao';
 
-import reducerTecnologia, { CADASTRAR_TECNOLOGIA, DELETAR_TECNOLOGIA, FAVORITAR_TECNOLOGIA } from "./reducer/reducerTecnologias.js";
-import reducerCategoria, { CADASTRAR_CATEGORIA, TROCAR_COR_CATEGORIA } from "./reducer/reducerCategorias.js";
+import reducerTecnologia, { CADASTRAR_TECNOLOGIA, DELETAR_TECNOLOGIA, FAVORITAR_TECNOLOGIA } from "./reducer/Tecnologias";
+import reducerCategoria, { CADASTRAR_CATEGORIA, TROCAR_COR_CATEGORIA } from "./reducer/Categorias";
 import { useState, useReducer } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { ICategoria } from './shared/interfaces/iCategoria';
+import { ITecnologia } from './shared/interfaces/iTecnologia';
 
 function App() {
 
@@ -218,28 +220,28 @@ function App() {
 
   const [organizacaoOculta, setOrganizacaoOculta] = useState(false);
 
-  const aoAdicionarNovaTecnologia = (tecnologia) => {
+  const aoAdicionarNovaTecnologia = (tecnologia : ITecnologia) => {
     dispatchTecnologias({
       tipo: CADASTRAR_TECNOLOGIA,
       tecnologia: tecnologia
     });
   };
 
-  const aoAdicionarNovaCategoria = (categoria) => {
+  const aoAdicionarNovaCategoria = (categoria : ICategoria) => {
     dispatchCategorias({
       tipo: CADASTRAR_CATEGORIA,
       categoria: categoria
     });
   };
 
-  function aoDeletarTecnologia(id) {
+  function aoDeletarTecnologia(id : string) {
     dispatchTecnologias({
       tipo: DELETAR_TECNOLOGIA,
       id: id
     });
   };
 
-  function aoMudarCorCategoria(cor, id) {
+  function aoMudarCorCategoria(cor : string, id : string) {
     dispatchCategorias({
       tipo: TROCAR_COR_CATEGORIA,
       id: id,
@@ -247,7 +249,7 @@ function App() {
     });
   };
 
-  function aoFavoritarTecnologia(id) {
+  function aoFavoritarTecnologia(id : string) {
     dispatchTecnologias({
       tipo: FAVORITAR_TECNOLOGIA,
       id: id
@@ -285,7 +287,7 @@ function App() {
             nome={categoria.nome}
             cor={categoria.cor}
             mudarCor={aoMudarCorCategoria}
-            tecnologias={tecnologias.filter(tecnologia => tecnologia.categoria === categoria.nome)}
+            tecnologias={tecnologias.filter((tecnologia : ITecnologia) => tecnologia.categoria === categoria.nome)}
             aoDeletar={aoDeletarTecnologia}
             aoFavoritar={aoFavoritarTecnologia}
           />

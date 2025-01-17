@@ -1,7 +1,9 @@
+import { CategoriaAcao, CategoriaEstado } from "../../shared/interfaces/iCategoria";
+
 export const CADASTRAR_CATEGORIA = "CADASTRAR_CATEGORIA";
 export const TROCAR_COR_CATEGORIA = "TROCAR_COR_CATEGORIA";
 
-const reducerCategoria = (estado, acao) => {
+const reducerCategoria = (estado : CategoriaEstado, acao: CategoriaAcao) => {
     switch (acao.tipo) {
         case CADASTRAR_CATEGORIA:
             return [...estado, acao.categoria];

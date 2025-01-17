@@ -43,7 +43,9 @@ const Tecnologias = ({ id, nome, cor, tecnologias, mudarCor, aoDeletar, aoFavori
                     })}
                 </div>
             </section>
-            : ""
+            : 
+            <>
+            </>
     );
 }
 

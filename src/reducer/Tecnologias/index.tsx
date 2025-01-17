@@ -1,8 +1,10 @@
+import { TecnologiaAcao, TecnologiaEstado } from "../../shared/interfaces/iTecnologia";
+
 export const CADASTRAR_TECNOLOGIA = "CADASTRAR_TECNOLOGIA";
 export const DELETAR_TECNOLOGIA = "DELETAR_TECNOLOGIA";
 export const FAVORITAR_TECNOLOGIA = "FAVORITAR_TECNOLOGIA";
 
-const reducerTecnologia = (estado, acao) => {
+const reducerTecnologia = (estado : TecnologiaEstado, acao : TecnologiaAcao) => {
     switch (acao.tipo) {
         case CADASTRAR_TECNOLOGIA:
             return [...estado, acao.tecnologia];
