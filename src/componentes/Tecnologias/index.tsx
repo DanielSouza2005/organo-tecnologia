@@ -3,41 +3,42 @@ import Card from "../Card";
 import "./tecnologias.css";
 import { useContext } from "react";
 import { TecnologiaContext } from "../../context/Tecnologia";
+import { ITecnologia } from "../../shared/interfaces/iTecnologia";
+import { ICategoria } from "../../shared/interfaces/iCategoria";
 
 interface TecnologiasProps {
-    id: string;
-    nome: string;
-    cor: string;    
+    categoria: ICategoria;
     mudarCor: (cor: string, id: string) => void;
     aoDeletar: (id: string) => void;
     aoFavoritar: (id: string) => void;
 };
 
-const Tecnologias = ({ id, nome, cor, mudarCor, aoDeletar, aoFavoritar }: TecnologiasProps) => {
+const Tecnologias = ({ categoria, mudarCor, aoDeletar, aoFavoritar }: TecnologiasProps) => {
 
     const { tecnologias } = useContext(TecnologiaContext)!;
+    const tecnologiasFiltradas = tecnologias.filter((tecnologia : ITecnologia) => tecnologia.categoria === categoria.nome);
 
-    const estiloSection = { backgroundColor: hexToRgba(cor, '0.6') };
-    const estiloH3 = { borderColor: cor };
+    const estiloSection = { backgroundColor: hexToRgba(categoria.cor, '0.6') };
+    const estiloH3 = { borderColor: categoria.cor };
 
     return (
-        (tecnologias.length > 0) ?
+        (tecnologiasFiltradas.length > 0) ?
             <section className="tecnologia" style={estiloSection}>
                 <input
                     type="color"
                     className="input-cor"
-                    value={cor}
-                    onChange={evento => mudarCor(evento.target.value, id)}
+                    value={categoria.cor}
+                    onChange={evento => mudarCor(evento.target.value, categoria.id)}
                 />
-                <h3 style={estiloH3}>{nome}</h3>
+                <h3 style={estiloH3}>{categoria.nome}</h3>
                 <div className="cards">
-                    {tecnologias.map((tecnologia) => {
+                    {tecnologiasFiltradas.map((tecnologia) => {
                         return <Card
                                     key={tecnologia.id}
                                     id={tecnologia.id}
                                     nome={tecnologia.nome}
                                     imagem={tecnologia.imagem}
-                                    corFundo={cor}
+                                    corFundo={categoria.cor}
                                     aoDeletar={aoDeletar}
                                     favorito={tecnologia.favorito ?? false}
                                     aoFavoritar={aoFavoritar}

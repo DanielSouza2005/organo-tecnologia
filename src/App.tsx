@@ -83,9 +83,7 @@ function App() {
         {categorias.map((categoria) =>
           <Tecnologias
             key={categoria.id}
-            id={categoria.id}
-            nome={categoria.nome}
-            cor={categoria.cor}
+            categoria={categoria}
             mudarCor={aoMudarCorCategoria}            
             aoDeletar={aoDeletarTecnologia}
             aoFavoritar={aoFavoritarTecnologia}
