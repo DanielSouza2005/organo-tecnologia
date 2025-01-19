@@ -10,6 +10,8 @@ export interface ICategoria {
 export interface CategoriaContextType {
     categorias: ICategoria[];
     dispatchCategorias: React.Dispatch<any>;
+    aoAdicionarNovaCategoria: (categoria: ICategoria) => void;
+    aoMudarCorCategoria({ cor, id }: AlteracaoCorCategoria): void; 
 }
 
 export interface CategoriaContextProps {
@@ -29,3 +31,4 @@ interface TrocarCorCategoriaAcao {
 
 export type CategoriaAcao = CadastrarCategoriaAcao | TrocarCorCategoriaAcao;
 export type CategoriaEstado = ICategoria[];
+export type AlteracaoCorCategoria = Pick<ICategoria, "id" | "cor">;

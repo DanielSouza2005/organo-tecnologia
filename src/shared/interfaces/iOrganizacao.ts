@@ -7,6 +7,7 @@ export interface IOrganizacao {
 export interface IOrganizacaoContextType {
     organizacaoOculta: boolean;
     setOrganizacaoOculta: React.Dispatch<React.SetStateAction<boolean>>;
+    aoOcultarOrganizacao: () => void;
 }
 
 export interface OrganizacaoContextProps {

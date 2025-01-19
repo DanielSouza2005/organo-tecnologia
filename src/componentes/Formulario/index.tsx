@@ -6,24 +6,23 @@ import Campo from "../Campo";
 import ListaSuspensa from "../ListaSuspensa";
 import Botao from "../Botao";
 
-import { ICategoria } from '../../shared/interfaces/iCategoria';
 import { ITecnologia } from '../../shared/interfaces/iTecnologia';
 import { CategoriaContext } from '../../context/Categoria';
+import { obterDataAtual } from '../../utils';
 
 interface FormularioProps {
     tituloCategoria: string;
     tituloTecnologia: string;
-    aoCadastrarTecnologia: (tecnologia : ITecnologia) => void;
-    aoCadastrarCategoria: (categoria : ICategoria) => void;
+    aoCadastrarTecnologia: (tecnologia : ITecnologia) => void;    
 }
 
-const Formulario = ({ tituloCategoria, tituloTecnologia, aoCadastrarTecnologia, aoCadastrarCategoria }: FormularioProps) => {
-    const { categorias } = useContext(CategoriaContext)!;
+const Formulario = ({ tituloCategoria, tituloTecnologia, aoCadastrarTecnologia }: FormularioProps) => {
+    const { categorias, aoAdicionarNovaCategoria } = useContext(CategoriaContext)!;
 
     const [nomeTecnologia, setNomeTecnologia] = useState("");
     const [imagemTecnologia, setImagemTecnologia] = useState("");
     const [categoriaTecnologia, setCategoriaTecnologia] = useState("");
-    const [dataInclusaoTecnologia, setDataInclusaoTecnologia] = useState("");
+    const [dataInclusaoTecnologia, setDataInclusaoTecnologia] = useState(obterDataAtual);
 
     const [nomeCategoria, setNomeCategoria] = useState("");
     const [corCategoria, setCorCategoria] = useState("#000000");
@@ -46,7 +45,7 @@ const Formulario = ({ tituloCategoria, tituloTecnologia, aoCadastrarTecnologia, 
 
     const aoSalvarCategoria = (evento : React.FormEvent<HTMLFormElement>) => {
         evento.preventDefault();
-        aoCadastrarCategoria({
+        aoAdicionarNovaCategoria({
             id: uuidv4(),
             nome: nomeCategoria,
             cor: corCategoria

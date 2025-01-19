@@ -4,13 +4,17 @@ import { IOrganizacaoContextType, OrganizacaoContextProps } from "../../shared/i
 export const OrganizacaoContext = createContext<IOrganizacaoContextType | undefined>(undefined);
 OrganizacaoContext.displayName = "Organização";
 
-export const OrganizacaoProvider = ({ children } : OrganizacaoContextProps) => {
+export const OrganizacaoProvider = ({ children }: OrganizacaoContextProps) => {
 
     const [organizacaoOculta, setOrganizacaoOculta] = useState(false);
 
+    function aoOcultarOrganizacao() {
+        return setOrganizacaoOculta(!organizacaoOculta);
+    }
+
     return (
-        <OrganizacaoContext.Provider value={{ organizacaoOculta, setOrganizacaoOculta }}>
-            { children }
+        <OrganizacaoContext.Provider value={{ organizacaoOculta, setOrganizacaoOculta, aoOcultarOrganizacao }}>
+            {children}
         </OrganizacaoContext.Provider>
     );
 }

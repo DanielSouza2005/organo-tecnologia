@@ -1,37 +1,49 @@
-import { BiHide, BiSolidHide } from "react-icons/bi";
 import './organizacao.css';
-import { ReactNode } from "react";
+import { BiHide, BiSolidHide } from "react-icons/bi";
+import { ReactNode, useContext } from "react";
+import { Link } from 'react-scroll';
+
+import { OrganizacaoContext } from "../../context/Organizacao";
 
 interface OrganizacaoProps {
-    titulo : string;
-    oculto: boolean;
-    aoOcultar: () => void;
-    children: ReactNode;    
+    titulo: string;
+    children: ReactNode;
 }
 
-const Organizacao = ({ titulo, oculto, aoOcultar, children } : OrganizacaoProps) => {
+const Organizacao = ({ titulo, children }: OrganizacaoProps) => {
+
+    const { organizacaoOculta, aoOcultarOrganizacao } = useContext(OrganizacaoContext)!;
 
     const propsOcultar = {
         className: "btn-ocultar",
         size: 32,
-        onClick: aoOcultar
+        onClick: aoOcultarOrganizacao
     }
 
-    return(
-        <section className="organizacao"> 
+    return (
+        <section className="organizacao">
             <div className="organizacao-cabecalho">
                 <h2>{titulo}</h2>
-                {
-                    oculto ?
-                    <BiSolidHide {...propsOcultar} />:
-                    <BiHide {...propsOcultar} />                                       
-                }                
-            </div>           
-            
+                <Link
+                    spy={true}
+                    smooth={true}
+                    duration={750}
+                    to="organizacao"
+                >
+                    {
+                        organizacaoOculta ?
+                            <BiSolidHide {...propsOcultar} /> :
+                            <BiHide {...propsOcultar} />
+                    }
+
+                </Link>
+
+            </div>
+
             {
-                oculto ?
-                <></> :
-                children
+                organizacaoOculta ?
+                    <></> :
+                    children
             }
         </section>
     );

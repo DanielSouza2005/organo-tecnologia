@@ -5,17 +5,19 @@ import { useContext } from "react";
 import { TecnologiaContext } from "../../context/Tecnologia";
 import { ITecnologia } from "../../shared/interfaces/iTecnologia";
 import { ICategoria } from "../../shared/interfaces/iCategoria";
+import { CategoriaContext } from "../../context/Categoria";
 
 interface TecnologiasProps {
     categoria: ICategoria;
-    mudarCor: (cor: string, id: string) => void;
     aoDeletar: (id: string) => void;
     aoFavoritar: (id: string) => void;
 };
 
-const Tecnologias = ({ categoria, mudarCor, aoDeletar, aoFavoritar }: TecnologiasProps) => {
+const Tecnologias = ({ categoria, aoDeletar, aoFavoritar }: TecnologiasProps) => {
 
-    const { tecnologias } = useContext(TecnologiaContext)!;
+    const { aoMudarCorCategoria } = useContext(CategoriaContext)!;
+    
+    const { tecnologias } = useContext(TecnologiaContext)!;    
     const tecnologiasFiltradas = tecnologias.filter((tecnologia : ITecnologia) => tecnologia.categoria === categoria.nome);
 
     const estiloSection = { backgroundColor: hexToRgba(categoria.cor, '0.6') };
@@ -28,7 +30,7 @@ const Tecnologias = ({ categoria, mudarCor, aoDeletar, aoFavoritar }: Tecnologia
                     type="color"
                     className="input-cor"
                     value={categoria.cor}
-                    onChange={evento => mudarCor(evento.target.value, categoria.id)}
+                    onChange={evento => aoMudarCorCategoria({cor: evento.target.value, id: categoria.id })}
                 />
                 <h3 style={estiloH3}>{categoria.nome}</h3>
                 <div className="cards">
