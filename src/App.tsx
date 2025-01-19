@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 
 import Banner from './componentes/Banner';
 import Formulario from './componentes/Formulario';
@@ -14,13 +14,13 @@ import { CategoriaContext } from './context/Categoria';
 import { ICategoria } from './shared/interfaces/iCategoria';
 import { ITecnologia } from './shared/interfaces/iTecnologia';
 import { TecnologiaContext } from './context/Tecnologia';
+import { OrganizacaoContext } from './context/Organizacao';
 
 function App() {
 
   const { categorias, dispatchCategorias } = useContext(CategoriaContext)!;
   const { dispatchTecnologias } = useContext(TecnologiaContext)!;
-
-  const [organizacaoOculta, setOrganizacaoOculta] = useState(false);
+  const { organizacaoOculta, setOrganizacaoOculta } = useContext(OrganizacaoContext)!;
 
   const aoAdicionarNovaTecnologia = (tecnologia : ITecnologia) => {
     dispatchTecnologias({
