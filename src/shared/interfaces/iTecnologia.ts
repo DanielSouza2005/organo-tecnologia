@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { CADASTRAR_TECNOLOGIA, DELETAR_TECNOLOGIA, FAVORITAR_TECNOLOGIA } from "../../reducer/Tecnologias";
 
 export interface ITecnologia {
@@ -7,6 +8,15 @@ export interface ITecnologia {
     favorito?: boolean;
     categoria?: string;
     dataInclusao: string;
+}
+
+export interface TecnologiaContextType {
+    tecnologias: ITecnologia[];
+    dispatchTecnologias: React.Dispatch<any>;
+}
+
+export interface TecnologiaContextProps {
+    children: ReactNode;
 }
 
 interface CadastrarTecnologiaAcao {

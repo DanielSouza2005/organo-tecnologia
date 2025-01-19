@@ -1,21 +1,25 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import "./Formulario.css";
+
 import Campo from "../Campo";
 import ListaSuspensa from "../ListaSuspensa";
 import Botao from "../Botao";
-import "./Formulario.css";
+
 import { ICategoria } from '../../shared/interfaces/iCategoria';
 import { ITecnologia } from '../../shared/interfaces/iTecnologia';
+import { CategoriaContext } from '../../context/Categoria';
 
 interface FormularioProps {
     tituloCategoria: string;
     tituloTecnologia: string;
-    categorias: ICategoria[];
     aoCadastrarTecnologia: (tecnologia : ITecnologia) => void;
     aoCadastrarCategoria: (categoria : ICategoria) => void;
 }
 
-const Formulario = ({ tituloCategoria, tituloTecnologia, categorias, aoCadastrarTecnologia, aoCadastrarCategoria }: FormularioProps) => {
+const Formulario = ({ tituloCategoria, tituloTecnologia, aoCadastrarTecnologia, aoCadastrarCategoria }: FormularioProps) => {
+    const { categorias } = useContext(CategoriaContext)!;
+
     const [nomeTecnologia, setNomeTecnologia] = useState("");
     const [imagemTecnologia, setImagemTecnologia] = useState("");
     const [categoriaTecnologia, setCategoriaTecnologia] = useState("");

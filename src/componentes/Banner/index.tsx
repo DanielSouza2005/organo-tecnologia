@@ -1,14 +1,14 @@
 import "./Banner.css";
+import bannerImg from '../../imagens/banner.png';
 
 interface BannerProps {
-    caminhoImagem: string;
     textoAlternativo?: string;
 }
 
-const Banner = ({ caminhoImagem, textoAlternativo } : BannerProps) => {
+const Banner = ({ textoAlternativo } : BannerProps) => {
     return (
         <header className="banner">
-            <img src={caminhoImagem} alt={textoAlternativo} />
+            <img src={bannerImg} alt={textoAlternativo} />
         </header>
     );
 }

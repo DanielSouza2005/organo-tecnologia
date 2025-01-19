@@ -1,9 +1,19 @@
+import { ReactNode } from "react";
 import { CADASTRAR_CATEGORIA, TROCAR_COR_CATEGORIA } from "../../reducer/Categorias";
 
 export interface ICategoria {
     id: string;
     nome: string;
     cor: string;
+}
+
+export interface CategoriaContextType {
+    categorias: ICategoria[];
+    dispatchCategorias: React.Dispatch<any>;
+}
+
+export interface CategoriaContextProps {
+    children: ReactNode;
 }
 
 interface CadastrarCategoriaAcao {

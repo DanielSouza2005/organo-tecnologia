@@ -1,19 +1,21 @@
 import hexToRgba from "hex-to-rgba";
 import Card from "../Card";
 import "./tecnologias.css";
-import { ITecnologia } from "../../shared/interfaces/iTecnologia";
+import { useContext } from "react";
+import { TecnologiaContext } from "../../context/Tecnologia";
 
 interface TecnologiasProps {
     id: string;
     nome: string;
-    cor: string;
-    tecnologias: ITecnologia[];
+    cor: string;    
     mudarCor: (cor: string, id: string) => void;
     aoDeletar: (id: string) => void;
     aoFavoritar: (id: string) => void;
 };
 
-const Tecnologias = ({ id, nome, cor, tecnologias, mudarCor, aoDeletar, aoFavoritar }: TecnologiasProps) => {
+const Tecnologias = ({ id, nome, cor, mudarCor, aoDeletar, aoFavoritar }: TecnologiasProps) => {
+
+    const { tecnologias } = useContext(TecnologiaContext)!;
 
     const estiloSection = { backgroundColor: hexToRgba(cor, '0.6') };
     const estiloH3 = { borderColor: cor };
