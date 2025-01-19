@@ -9,11 +9,9 @@ import { CategoriaContext } from "../../context/Categoria";
 
 interface TecnologiasProps {
     categoria: ICategoria;
-    aoDeletar: (id: string) => void;
-    aoFavoritar: (id: string) => void;
 };
 
-const Tecnologias = ({ categoria, aoDeletar, aoFavoritar }: TecnologiasProps) => {
+const Tecnologias = ({ categoria }: TecnologiasProps) => {
 
     const { aoMudarCorCategoria } = useContext(CategoriaContext)!;
     
@@ -37,14 +35,8 @@ const Tecnologias = ({ categoria, aoDeletar, aoFavoritar }: TecnologiasProps) =>
                     {tecnologiasFiltradas.map((tecnologia) => {
                         return <Card
                                     key={tecnologia.id}
-                                    id={tecnologia.id}
-                                    nome={tecnologia.nome}
-                                    imagem={tecnologia.imagem}
+                                    tecnologia={tecnologia}
                                     corFundo={categoria.cor}
-                                    aoDeletar={aoDeletar}
-                                    favorito={tecnologia.favorito ?? false}
-                                    aoFavoritar={aoFavoritar}
-                                    dataInclusao={tecnologia.dataInclusao}
                                 />;
                     })}
                 </div>

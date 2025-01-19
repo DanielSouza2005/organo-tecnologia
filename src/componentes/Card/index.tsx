@@ -1,48 +1,44 @@
 import "./card.css";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
+import { TecnologiaContext } from "../../context/Tecnologia";
+import { useContext } from "react";
+import { ITecnologia } from "../../shared/interfaces/iTecnologia";
 
 interface CardProps {
-    id: string;
-    nome: string;
-    imagem: string;
     corFundo: string;
-    dataInclusao: string;
-    favorito: boolean;
-    aoDeletar: (id: string) => void;
-    aoFavoritar: (id: string) => void;
+    tecnologia: ITecnologia;
 }
 
-const Card = ({id, nome, imagem, corFundo, favorito, dataInclusao, aoDeletar, aoFavoritar} : CardProps) => {
+const Card = ({ corFundo, tecnologia }: CardProps) => {
 
-    function favoritar(){
-        aoFavoritar(id);
-    }
+    const { aoDeletarTecnologia, aoFavoritarTecnologia } = useContext(TecnologiaContext)!;
 
     const propsFavorito = {
         size: 25,
-        onClick: favoritar        
+        onClick: () => aoFavoritarTecnologia(tecnologia.id)
     }
 
     return (
         <div className="card">
-            <AiFillCloseCircle 
+            <AiFillCloseCircle
                 className="btn-deletar"
-                onClick={() => aoDeletar(id)} 
+                onClick={() => aoDeletarTecnologia(tecnologia.id)}
                 size={25}
             />
             <div className="cabecalho" style={{ backgroundColor: corFundo }}>
-                <img src={imagem} alt={nome} />
+                <img src={tecnologia.imagem} alt={tecnologia.nome} />
             </div>
             <div className="rodape">
-                <h4>{nome}</h4>
+                <h4>{tecnologia.nome}</h4>
                 <div className="favoritar">
-                    {favorito ? 
-                        <MdFavorite {...propsFavorito} color="ff0000" /> : 
-                        <MdFavoriteBorder {...propsFavorito} />
+                    {
+                        tecnologia.favorito ?
+                            <MdFavorite {...propsFavorito} color="ff0000" /> :
+                            <MdFavoriteBorder {...propsFavorito} />
                     }
-                    <h5>{ new Date(dataInclusao).toLocaleDateString() }</h5>
-                </div>                
+                    <h5>{new Date(tecnologia.dataInclusao + "T00:00:00").toLocaleDateString()}</h5>
+                </div>
             </div>
         </div>
     );

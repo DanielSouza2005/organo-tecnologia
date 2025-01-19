@@ -13,6 +13,9 @@ export interface ITecnologia {
 export interface TecnologiaContextType {
     tecnologias: ITecnologia[];
     dispatchTecnologias: React.Dispatch<any>;
+    aoAdicionarNovaTecnologia: (tecnologia: ITecnologia) => void;
+    aoDeletarTecnologia: (id: string) => void;
+    aoFavoritarTecnologia: (id: string) => void;
 }
 
 export interface TecnologiaContextProps {
