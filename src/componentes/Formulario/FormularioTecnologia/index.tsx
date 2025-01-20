@@ -1,12 +1,12 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
 
-import Botao from "../Botao";
-import Campo from "../Campo";
-import ListaSuspensa from "../ListaSuspensa";
-import { obterDataAtual } from "../../utils";
-import { TecnologiaContext } from "../../context/Tecnologia";
-import { CategoriaContext } from "../../context/Categoria";
+import Botao from "../../Botao";
+import Campo from "../../Campo";
+import ListaSuspensa from "../../ListaSuspensa";
+import { obterDataAtual } from "../../../utils";
+import { useCategorias } from "../../../hooks/Categorias";
+import { useTecnologias } from "../../../hooks/Tecnologias";
 
 interface FormularioTecnologiaProps {
     titulo: string;
@@ -14,8 +14,8 @@ interface FormularioTecnologiaProps {
 
 const FormularioTecnologia = ({ titulo }: FormularioTecnologiaProps) => {
 
-    const { aoAdicionarNovaTecnologia } = useContext(TecnologiaContext)!;
-    const { categorias } = useContext(CategoriaContext)!;
+    const { aoAdicionarNovaTecnologia } = useTecnologias();
+    const { categorias } = useCategorias();
 
     const [nomeTecnologia, setNomeTecnologia] = useState("");
     const [imagemTecnologia, setImagemTecnologia] = useState("");

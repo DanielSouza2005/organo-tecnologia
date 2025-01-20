@@ -1,8 +1,8 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
-import { CategoriaContext } from "../../context/Categoria";
-import Campo from "../Campo";
-import Botao from "../Botao";
+import Campo from "../../Campo";
+import Botao from "../../Botao";
+import { useCategorias } from "../../../hooks/Categorias";
 
 interface FormularioCategoriaProps {
     titulo: string;
@@ -10,7 +10,7 @@ interface FormularioCategoriaProps {
 
 const FormularioCategoria = ({ titulo }: FormularioCategoriaProps) => {
 
-    const { aoAdicionarNovaCategoria } = useContext(CategoriaContext)!;
+    const { aoAdicionarNovaCategoria } = useCategorias();
 
     const [nomeCategoria, setNomeCategoria] = useState("");
     const [corCategoria, setCorCategoria] = useState("#000000");

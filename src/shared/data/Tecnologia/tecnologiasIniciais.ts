@@ -1,10 +1,9 @@
 import { v4 as uuidv4 } from 'uuid';
 import { ITecnologia } from "../../interfaces/iTecnologia";
-import { useContext } from 'react';
-import { CategoriaContext } from '../../../context/Categoria';
+import { useCategorias } from '../../../hooks/Categorias';
 
 export const useTecnologiasIniciais = (): ITecnologia[] => {
-    const { categorias } = useContext(CategoriaContext)!;
+    const { categorias } = useCategorias();
 
     return [
         {

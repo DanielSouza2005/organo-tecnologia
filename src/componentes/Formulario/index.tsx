@@ -1,7 +1,7 @@
 import "./Formulario.css";
 
-import FormularioTecnologia from '../FormularioTecnologia';
-import FormularioCategoria from '../FormularioCategoria';
+import FormularioTecnologia from './FormularioTecnologia';
+import FormularioCategoria from './FormularioCategoria';
 
 const Formulario = () => {
     return (

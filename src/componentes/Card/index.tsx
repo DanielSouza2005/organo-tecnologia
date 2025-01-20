@@ -1,9 +1,8 @@
 import "./card.css";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
-import { TecnologiaContext } from "../../context/Tecnologia";
-import { useContext } from "react";
 import { ITecnologia } from "../../shared/interfaces/iTecnologia";
+import { useTecnologias } from "../../hooks/Tecnologias";
 
 interface CardProps {
     corFundo: string;
@@ -12,7 +11,7 @@ interface CardProps {
 
 const Card = ({ corFundo, tecnologia }: CardProps) => {
 
-    const { aoDeletarTecnologia, aoFavoritarTecnologia } = useContext(TecnologiaContext)!;
+    const { aoDeletarTecnologia, aoFavoritarTecnologia } = useTecnologias();
 
     const propsFavorito = {
         size: 25,

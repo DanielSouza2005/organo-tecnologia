@@ -1,11 +1,10 @@
 import hexToRgba from "hex-to-rgba";
 import Card from "../Card";
 import "./tecnologias.css";
-import { useContext } from "react";
-import { TecnologiaContext } from "../../context/Tecnologia";
 import { ITecnologia } from "../../shared/interfaces/iTecnologia";
 import { ICategoria } from "../../shared/interfaces/iCategoria";
-import { CategoriaContext } from "../../context/Categoria";
+import { useCategorias } from "../../hooks/Categorias";
+import { useTecnologias } from "../../hooks/Tecnologias";
 
 interface TecnologiasProps {
     categoria: ICategoria;
@@ -13,9 +12,9 @@ interface TecnologiasProps {
 
 const Tecnologias = ({ categoria }: TecnologiasProps) => {
 
-    const { aoMudarCorCategoria } = useContext(CategoriaContext)!;
+    const { aoMudarCorCategoria } = useCategorias();
     
-    const { tecnologias } = useContext(TecnologiaContext)!;    
+    const { tecnologias } = useTecnologias();    
     const tecnologiasFiltradas = tecnologias.filter((tecnologia : ITecnologia) => tecnologia.categoria === categoria.nome);
 
     const estiloSection = { backgroundColor: hexToRgba(categoria.cor, '0.6') };

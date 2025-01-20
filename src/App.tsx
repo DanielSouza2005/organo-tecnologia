@@ -1,16 +1,14 @@
-import { useContext } from 'react';
-
 import Banner from './componentes/Banner';
 import Formulario from './componentes/Formulario';
 import Tecnologias from './componentes/Tecnologias';
 import Rodape from './componentes/Rodape';
 import Organizacao from './componentes/Organizacao';
 
-import { CategoriaContext } from './context/Categoria';
+import { useCategorias } from './hooks/Categorias';
 
 function App() {
 
-  const { categorias } = useContext(CategoriaContext)!;
+  const { categorias } = useCategorias();
 
   return (
     <div className="App">
