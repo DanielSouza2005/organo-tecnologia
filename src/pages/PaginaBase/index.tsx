@@ -4,6 +4,8 @@ import Rodape from "../../componentes/Rodape";
 import { CategoriaProvider } from "../../context/Categoria";
 import { TecnologiaProvider } from "../../context/Tecnologia";
 import { OrganizacaoProvider } from "../../context/Organizacao";
+import Cabecalho from "../../componentes/Cabecalho";
+import ScrollToTop from "../../componentes/ScrollTop";
 
 const PaginaBase = () => {
     return (
@@ -11,11 +13,19 @@ const PaginaBase = () => {
             <CategoriaProvider>
                 <TecnologiaProvider>
                     <OrganizacaoProvider>
+
+                        <ScrollToTop />
+
+                        <Cabecalho />
+
                         <Banner
                             textoAlternativo="Banner principal da Página das Tecnologias usadas no Desenvolvimento"
                         />
+
                         <Outlet />
+
                         <Rodape />
+                        
                     </OrganizacaoProvider>
                 </TecnologiaProvider>
             </CategoriaProvider>

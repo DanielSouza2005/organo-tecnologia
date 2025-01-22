@@ -3,6 +3,7 @@ import Tecnologias from '../../componentes/Tecnologias';
 import Organizacao from '../../componentes/Organizacao';
 
 import { useCategorias } from '../../hooks/Categorias';
+import { ITecnologia } from '../../shared/interfaces/iTecnologia';
 
 function Home() {
 
@@ -19,6 +20,7 @@ function Home() {
           <Tecnologias
             key={categoria.id}
             categoria={categoria}
+            filtro={(tecnologia : ITecnologia) => tecnologia.categoria === categoria.nome}
           />
         )}
       </Organizacao>

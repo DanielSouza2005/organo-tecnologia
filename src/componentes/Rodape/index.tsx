@@ -3,6 +3,7 @@ import instagram from '../../imagens/ig.png';
 import twitter from '../../imagens/tw.png';
 import logo from '../../imagens/logo.png';
 import "./Rodape.css";
+import { Link } from 'react-router-dom';
 
 const Rodape = () => {
     return (
@@ -10,19 +11,19 @@ const Rodape = () => {
             <section>
                 <ul>
                     <li>
-                        <a href="facebook.com" target="_blank">
+                        <Link to="./">
                             <img src={facebook} alt="" />
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="twitter.com" target="_blank">
+                        <Link to="./">
                             <img src={twitter} alt="" />
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="instagram.com" target="_blank">
+                        <Link to="./">
                             <img src={instagram} alt="" />
-                        </a>
+                        </Link>
                     </li>
                 </ul>
             </section>

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
+import { scroller } from "react-scroll";
 
 import Botao from "../../Botao";
 import Campo from "../../Campo";
@@ -24,6 +25,7 @@ const FormularioTecnologia = ({ titulo }: FormularioTecnologiaProps) => {
 
     const aoSalvarTecnologia = (evento: React.FormEvent<HTMLFormElement>) => {
         evento.preventDefault();
+        //ATUALIZA O ARRAY
         aoAdicionarNovaTecnologia({
             id: uuidv4(),
             nome: nomeTecnologia,
@@ -32,6 +34,19 @@ const FormularioTecnologia = ({ titulo }: FormularioTecnologiaProps) => {
             dataInclusao: dataInclusaoTecnologia
         });
 
+        //BUSCA A CATEGORIA PELO NOME
+        const categoria = categorias.find(categoria => categoria.nome === categoriaTecnologia);
+
+        //SE ACHOU CATEGORIA, SCROLL ATÉ ELA
+        if (categoria) {
+            scroller.scrollTo(categoria.id, {
+                duration: 750,
+                smooth: true,
+                spy: true
+            });
+        }
+
+        //LIMPA OS ESTADOS
         setNomeTecnologia("");
         setImagemTecnologia("");
         setCategoriaTecnologia("");

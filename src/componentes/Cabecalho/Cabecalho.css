@@ -1,0 +1,19 @@
+.cabecalhoNavegador {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.1em 6em;
+    background-color: #000;
+    position: fixed;
+    right: 0;
+    left: 0;
+    box-sizing: border-box;
+    height: 70px;
+    z-index: 1000;
+}
+
+.cabecalhoNavegador img {
+    height: 40px;
+    display: flex;
+    align-items: center;
+}

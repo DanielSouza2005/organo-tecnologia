@@ -11,8 +11,9 @@ const AppRoutes = () => {
                 <Route path="/" element={<PaginaBase />}>
                     <Route index element={<Home />}></Route>
                     <Route path="/favoritos" element={<Favoritos />}></Route>
-                    <Route path="*" element={<NaoEncontrada />}></Route>
                 </Route>
+                
+                <Route path="*" element={<NaoEncontrada />}></Route>
             </Routes>
         </BrowserRouter>
     );
