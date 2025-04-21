@@ -1,5 +1,5 @@
 <h1>🌐 Organo Tecnologias </h1>
-<img loading="lazy" src="https://img.shields.io/github/stars/DanielSouza2005?style=social"/>
+<img loading="lazy" src="https://img.shields.io/github/stars/DanielSouza2005/organo-tecnologia?style=social"/>
 
 <h2>💡 Sobre </h2>
 <p>Landing page do Organo, uma organização para gerenciar as tecnologias utilizadas em um determinado projeto.</p>
